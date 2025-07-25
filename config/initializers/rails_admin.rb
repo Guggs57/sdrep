@@ -1,6 +1,6 @@
 RailsAdmin.config do |config|
   # ⚠️ Important : utilise importmap, pas sprockets
-  config.asset_source = :importmap
+  config.asset_source = :sprockets
 
   # 🔐 Authentification via HTTP Basic (simple, sans Devise)
   config.authenticate_with do
