@@ -1,11 +1,4 @@
-// Frameworks externes
-@import "bootstrap";
-@import "@fortawesome/fontawesome-free/css/all.min.css";
-@import "rails_admin";
-
-// Styles internes
 @import "base/reset";
 @import "base/variables";
-@import "base/typography";
 @import "base/layout";
 @import "base/components";

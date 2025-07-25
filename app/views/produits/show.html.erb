@@ -1,0 +1,8 @@
+<h1><%= @produit.name %></h1>
+
+<% if @produit.image.attached? %>
+  <%= image_tag @produit.image %>
+<% end %>
+
+<p><strong>Description :</strong> <%= @produit.description %></p>
+<p><strong>Prix :</strong> <%= number_to_currency(@produit.price, unit: "€") %></p>
