@@ -60,3 +60,7 @@ gem "importmap-rails", "~> 2.2"
 
 gem "stimulus-rails"
 gem "rails_admin", "~> 3.3"
+
+gem "sprockets-rails"
+gem "sassc-rails"
+gem "dotenv-rails", groups: [:development, :test]

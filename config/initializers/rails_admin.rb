@@ -1,32 +1,21 @@
 RailsAdmin.config do |config|
+  # ⚠️ Important : utilise importmap, pas sprockets
   config.asset_source = :importmap
 
-  ### Popular gems integration
+  # 🔐 Authentification via HTTP Basic (simple, sans Devise)
+  config.authenticate_with do
+    authenticate_or_request_with_http_basic('Admin') do |username, password|
+      # Remplace par tes identifiants admin
+      username == ENV["ADMIN_USER"] && password == ENV["ADMIN_PASSWORD"]
+    end
+  end
 
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
+  # (facultatif) pour récupérer l'utilisateur courant si besoin
   # config.current_user_method(&:current_user)
 
-  ## == CancanCan ==
-  # config.authorize_with :cancancan
-
-  ## == Pundit ==
-  # config.authorize_with :pundit
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/railsadminteam/rails_admin/wiki/Base-configuration
-
-  ## == Gravatar integration ==
-  ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
-
   config.actions do
-    dashboard                     # mandatory
-    index                         # mandatory
+    dashboard
+    index
     new
     export
     bulk_delete
@@ -34,9 +23,5 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
 end
