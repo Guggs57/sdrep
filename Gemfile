@@ -59,3 +59,4 @@ end
 gem "importmap-rails", "~> 2.2"
 
 gem "stimulus-rails"
+gem "rails_admin", "~> 3.3"
