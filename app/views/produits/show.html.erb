@@ -1,8 +1,13 @@
-<h1><%= @produit.name %></h1>
+<div class="produit-show">
+  <h1><%= @produit.name %></h1>
 
-<% if @produit.image.attached? %>
-  <%= image_tag @produit.image %>
-<% end %>
+  <% if @produit.image.attached? %>
+    <%= image_tag @produit.image, class: "produit-image-large", alt: @produit.name %>
+  <% end %>
 
-<p><strong>Description :</strong> <%= @produit.description %></p>
-<p><strong>Prix :</strong> <%= number_to_currency(@produit.price, unit: "€") %></p>
+  <p><strong>Description :</strong> <%= @produit.description %></p>
+  <p><strong>Prix :</strong> <%= number_to_currency(@produit.price, unit: "€") %></p>
+  
+  <%= link_to "← Retour aux produits", produits_path, class: "btn-back" %>
+
+  </div>
