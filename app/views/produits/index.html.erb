@@ -1,18 +1,16 @@
-<h1>Nos produits</h1>
+<h1>Nos Produits</h1>
 
-<div class="produits">
+<div class="produits-grid">
   <% @produits.each do |produit| %>
     <div class="produit-card">
       <% if produit.image.attached? %>
-        <%= image_tag produit.image.variant(resize_to_limit: [300, 300]), alt: produit.name %>
+        <%= image_tag produit.image, alt: produit.name, class: "produit-image" %>
       <% else %>
-        <p>Image non disponible</p>
+        <p>Pas d'image</p>
       <% end %>
 
-      <h2><%= produit.name %></h2>
-      <p><strong>Prix :</strong> <%= number_to_currency(produit.price, unit: "€") %></p>
-
-      <%= link_to 'Voir le produit', produit_path(produit), class: "btn" %>
+      <h2><%= link_to produit.name, produit_path(produit) %></h2>
+      <p><%= number_to_currency(produit.price, unit: "€") %></p>
     </div>
   <% end %>
 </div>
