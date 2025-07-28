@@ -11,6 +11,22 @@
 
       <h2><%= link_to produit.name, produit_path(produit) %></h2>
       <p><%= number_to_currency(produit.price, unit: "€") %></p>
+
+      <!-- BOUTON : Ajouter au panier -->
+      <button
+        class="btn-panier"
+        data-controller="cart"
+        data-action="click->cart#ajouter"
+        data-produit-id="<%= produit.id %>"
+        data-produit-nom="<%= produit.name %>"
+        data-produit-prix="<%= produit.price %>">
+        Ajouter au panier
+      </button>
     </div>
   <% end %>
 </div>
+
+<div data-controller="cart">
+  <p>Stimulus devrait écrire dans la console (produits#index)</p>
+</div>
+

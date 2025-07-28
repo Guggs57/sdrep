@@ -1,0 +1,19 @@
+<div data-controller="cart">
+  <table>
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody data-cart-target="contenu">
+      <!-- Rempli dynamiquement -->
+    </tbody>
+  </table>
+
+  <p>Total : <span data-cart-target="total"></span></p>
+
+  <button data-action="click->cart#vider">Vider le panier</button>
+</div>
