@@ -2,7 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    this.element.addEventListener("submit", this.submitForm.bind(this))
+    // 🔁 Vider le panier si on arrive sur /checkout/success
+    if (window.location.pathname === "/checkout/success") {
+      localStorage.removeItem("cart")
+      console.log("🧹 Panier vidé après paiement réussi")
+    }
+
+    // 📩 Attacher la soumission du formulaire si présent
+    this.element?.addEventListener("submit", this.submitForm.bind(this))
   }
 
   async submitForm(event) {
