@@ -1,0 +1,37 @@
+<h1>Finaliser la commande</h1>
+
+<%= form_with url: "/checkout", method: :post, data: { controller: "checkout" }, html: { id: "checkout-form" } do %>
+  <div>
+    <label for="first_name">Prénom</label>
+    <%= text_field_tag :first_name, nil, required: true %>
+  </div>
+
+  <div>
+    <label for="last_name">Nom</label>
+    <%= text_field_tag :last_name, nil, required: true %>
+  </div>
+
+  <div>
+    <label for="email">Adresse e-mail</label>
+    <%= email_field_tag :email, nil, required: true %>
+  </div>
+
+  <div>
+    <label for="phone">Téléphone</label>
+    <%= telephone_field_tag :phone, nil, required: true %>
+  </div>
+
+  <div>
+    <label for="address">Adresse postale</label>
+    <%= text_area_tag :address, nil, required: true, rows: 3 %>
+  </div>
+
+  <div>
+    <%= check_box_tag :confirm_order, "yes", false, required: true %>
+    <label for="confirm_order">Je confirme ma commande</label>
+  </div>
+
+  <div>
+    <%= submit_tag "Procéder au paiement", class: "btn btn-primary" %>
+  </div>
+<% end %>

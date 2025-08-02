@@ -8,16 +8,21 @@
   <p><strong>Description :</strong> <%= @produit.description %></p>
   <p><strong>Prix :</strong> <%= number_to_currency(@produit.price, unit: "€") %></p>
   
+<div data-controller="cart">
   <button
-  class="btn-panier"
-  data-controller="cart"
-  data-action="click->cart#ajouter"
-  data-produit-id="<%= @produit.id %>"
-  data-produit-nom="<%= @produit.name %>"
-  data-produit-prix="<%= @produit.price %>">
-  Ajouter au panier
-</button>
+    class="btn-panier"
+    data-action="click->cart#ajouter"
+    data-produit-id="<%= @produit.id %>"
+    data-produit-nom="<%= @produit.name %>"
+    data-produit-prix="<%= number_with_precision(@produit.price, precision: 2) %>">
+    Ajouter au panier
+  </button>
+</div>
+
+
 
   <%= link_to "← Retour aux produits", produits_path, class: "btn-back" %>
+</div>
 
-  </div>
+<!-- Active Stimulus sans cibles ici -->
+<div data-controller="cart"></div>

@@ -5,7 +5,11 @@ export default class extends Controller {
 
   connect() {
     console.log("🛒 cart_controller.js monté")
-    this.afficherPanier()
+
+    // Afficher le panier uniquement si les cibles sont présentes (page /panier)
+    if (this.hasContenuTarget && this.hasTotalTarget) {
+      this.afficherPanier()
+    }
   }
 
   ajouter(event) {
@@ -13,71 +17,84 @@ export default class extends Controller {
     const produit = {
       id: bouton.dataset.produitId,
       nom: bouton.dataset.produitNom,
-      prix: parseFloat(bouton.dataset.produitPrix),
+      prix: parseFloat(bouton.dataset.produitPrix || 0),
       quantite: 1
     }
 
-    const panier = JSON.parse(localStorage.getItem("panier")) || []
-    const existant = panier.find(p => p.id === produit.id)
+    if (isNaN(produit.prix)) {
+      console.warn("❌ Prix invalide pour le produit :", produit)
+      return
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || []
+    const existant = cart.find(p => p.id === produit.id)
 
     if (existant) {
       existant.quantite++
     } else {
-      panier.push(produit)
+      cart.push(produit)
     }
 
-    localStorage.setItem("panier", JSON.stringify(panier))
-    this.afficherPanier()
+    localStorage.setItem("cart", JSON.stringify(cart))
     console.log("✅ Produit ajouté :", produit)
+
+    // Afficher le panier uniquement si on est sur la page panier
+    if (this.hasContenuTarget && this.hasTotalTarget) {
+      this.afficherPanier()
+    }
   }
 
   augmenter(event) {
     const id = event.currentTarget.dataset.produitId
-    const panier = JSON.parse(localStorage.getItem("panier")) || []
+    const cart = JSON.parse(localStorage.getItem("cart")) || []
 
-    const produit = panier.find(p => p.id === id)
+    const produit = cart.find(p => p.id === id)
     if (produit) produit.quantite++
 
-    localStorage.setItem("panier", JSON.stringify(panier))
+    localStorage.setItem("cart", JSON.stringify(cart))
     this.afficherPanier()
   }
 
   diminuer(event) {
     const id = event.currentTarget.dataset.produitId
-    let panier = JSON.parse(localStorage.getItem("panier")) || []
+    let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-    const produit = panier.find(p => p.id === id)
+    const produit = cart.find(p => p.id === id)
     if (produit) {
       produit.quantite--
       if (produit.quantite <= 0) {
-        panier = panier.filter(p => p.id !== id)
+        cart = cart.filter(p => p.id !== id)
       }
     }
 
-    localStorage.setItem("panier", JSON.stringify(panier))
+    localStorage.setItem("cart", JSON.stringify(cart))
     this.afficherPanier()
   }
 
   vider() {
-    localStorage.removeItem("panier")
+    localStorage.removeItem("cart")
     this.afficherPanier()
     console.log("🧹 Panier vidé")
   }
 
   afficherPanier() {
-    // Si pas sur la page avec les targets (ex: index), on ne fait rien
-    if (!this.hasContenuTarget || !this.hasTotalTarget) return
+    if (!this.hasContenuTarget || !this.hasTotalTarget) {
+      console.warn("⛔️ Les cibles Stimulus ne sont pas présentes.")
+      return
+    }
 
-    const panier = JSON.parse(localStorage.getItem("panier")) || []
+    const cart = JSON.parse(localStorage.getItem("cart")) || []
+    console.log("📦 Contenu du panier :", cart)
+
     this.contenuTarget.innerHTML = ""
     let total = 0
 
-    panier.forEach(produit => {
-      const ligne = document.createElement("tr")
-      const prix = produit.prix.toFixed(2)
-      const totalLigne = (produit.prix * produit.quantite).toFixed(2)
+    cart.forEach(produit => {
+      const prix = parseFloat(produit.prix || 0).toFixed(2)
+      const totalLigne = (parseFloat(produit.prix || 0) * produit.quantite).toFixed(2)
       total += parseFloat(totalLigne)
 
+      const ligne = document.createElement("tr")
       ligne.innerHTML = `
         <td>${produit.nom}</td>
         <td>${prix} €</td>

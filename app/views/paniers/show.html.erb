@@ -15,5 +15,9 @@
 
   <p>Total : <span data-cart-target="total"></span></p>
 
-  <button data-action="click->cart#vider">Vider le panier</button>
+  <div class="actions">
+    <button data-action="click->cart#vider">Vider le panier</button>
+
+    <%= link_to "Commander", "/checkout", class: "btn-commander" %>
+  </div>
 </div>

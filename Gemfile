@@ -65,3 +65,5 @@ gem "sprockets-rails"
 gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem 'image_processing', '~> 1.12'
+
+gem "stripe", "~> 15.4"
