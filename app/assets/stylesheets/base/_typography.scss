@@ -1,5 +1,10 @@
-body {
-  font-family: sans-serif;
-  background-color: $background-color;
-  color: $text-color;
+h1, h2, h3 {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
