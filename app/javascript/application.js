@@ -1,9 +1,12 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "controllers"
-import "rails_admin"
-import "@popperjs/core"
-import "bootstrap"
-import "@fortawesome/fontawesome-free"
-import "flatpickr"
-import "jquery"
-import "jquery-ui"
+import { Application } from "@hotwired/stimulus"
+import CartController from "controllers/cart_controller"
+import HelloController from "controllers/hello_controller"
+import CheckoutController from "controllers/checkout_controller"
+
+const application = Application.start()
+application.register("cart", CartController)
+application.register("hello", HelloController)
+application.register("checkout", CheckoutController)
+
+application.debug = false
+window.Stimulus = application
