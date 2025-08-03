@@ -1,0 +1,32 @@
+nav {
+  background-color: $color-surface;
+  padding: $spacing-sm $spacing-md;
+  display: flex;
+  justify-content: center;
+  box-shadow: $shadow-md;
+
+  ul {
+    display: flex;
+    gap: $spacing-lg;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      a {
+        font-family: $font-heading;
+        font-weight: bold;
+        color: $color-primary;
+        padding: 0.5rem 1rem;
+        border-radius: $radius;
+        transition: background-color $transition-fast;
+
+        &:hover {
+          background-color: $color-accent;
+          color: $color-background;
+        }
+      }
+    }
+  }
+}

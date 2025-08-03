@@ -1,77 +1,71 @@
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  transition: background 0.3s;
+
+  &-panier {
+    background-color: $color-primary;
+    color: white;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+  }
+
+  &-back {
+    background: none;
+    border: 1px solid $color-light;
+    color: $color-light;
+
+    &:hover {
+      background-color: $color-light;
+      color: $color-dark;
+    }
+  }
+
+  &-commander {
+    background-color: $color-acier;
+    color: white;
+
+    &:hover {
+      background-color: lighten($color-acier, 10%);
+    }
+  }
+}
+
+
 .produits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2rem;
 }
 
 .produit-card {
-  background: #111;
-  color: rgb(0, 0, 0);
-  border: 1px solid #333;
-  border-radius: 10px;
+  background-color: $color-acier;
+  border: 1px solid $color-dark;
+  border-radius: $radius;
   padding: 1rem;
   text-align: center;
-
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  h2 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-  }
-
-  p {
-    font-size: 1rem;
-    margin-top: 0.5rem;
-  }
-}
-
-.produit-show {
-  background-color: #111;
-  color: #eee;
-  padding: 2rem;
-  border-radius: 1rem;
-  max-width: 800px;
-  margin: 0 auto;
-
-  h1 {
-    margin-bottom: 1rem;
-    color: gold;
-  }
-
-  .produit-image-large {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 1rem;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    color: #111;
-  }
-}
-
-.btn-back {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
-  background-color: gold;
-  color: black;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
-    background-color: #f1c40f;
+    transform: translateY(-5px);
   }
+}
+
+.produit-image {
+  max-height: 180px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: $radius;
+  margin-bottom: 1rem;
 }
