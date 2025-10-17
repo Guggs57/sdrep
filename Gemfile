@@ -66,4 +66,4 @@ gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem 'image_processing', '~> 1.12'
 
-gem "stripe", "~> 15.4"
+gem "stripe", "~> 17.0"
